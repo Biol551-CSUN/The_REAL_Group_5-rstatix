@@ -164,7 +164,13 @@ view(test_paired)
 #example above is a paired
 #if unpaired, add paired = FALSE after the formula
 
+penguins_clean <- penguins %<%
+  drop_na()
+view(penguins_clean)
 
+penguins %>%
+  anova_test(body_mass_g ~ flipper_length_mm)
+get_anova_table()  
 
 #### tests to try out
 #chisq_test()
