@@ -1,0 +1,63 @@
+---
+title: "rstatix_proj"
+author: "The REAL Group 5"
+date: "4/9/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Abstract
+
+Intro to rstatix....presentation outline....
+
+
+## Load libraries
+```{r}
+library(tidyverse)
+library(rstatix)
+```
+
+## First code function
+
+```{r}
+
+```
+
+## Second code function
+
+```{r}
+
+```
+
+## Third code function
+
+```{r}
+
+```
+
+## T-test
+
+```{r}
+
+```
+
+## T-test plotting
+
+```{r}
+
+```
+
+## ANOVA test
+
+```{r}
+
+```
+
+## ANOVA test plotting
+
+```{r}
+
+```
