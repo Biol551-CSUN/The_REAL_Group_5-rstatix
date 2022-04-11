@@ -2,22 +2,29 @@
 title: "rstatix_proj"
 author: "The REAL Group 5"
 date: "4/9/2022"
-output: html_document
+output: 
+  html_document:
+    toc: TRUE
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
-## Abstract
+# Introduction
 
-Intro to rstatix....presentation outline....
+rstatix is a r package for basic statistical tests that is pipe-friendly to R and RStudio. It can be used to add statistical analysis to plots. Some of the functions include normality tests, correlation analysis, student t-tests, and ANOVA.
+
+For this project, we are using the PalmerPenguin data set to demonstrate how to use the package.
 
 
 ## Load libraries
 ```{r}
 library(tidyverse)
 library(rstatix)
+library(here)
+library(ggplot2)
+library(palmerpenguins)
 ```
 
 ## First code function
@@ -44,19 +51,51 @@ library(rstatix)
 
 ```
 
-## T-test plotting
+### T-test plotting
 
 ```{r}
 
 ```
 
 ## ANOVA test
+ANOVA testing (Analysis of Variance) is used to compare means between two or more independent groups. 
+If there is an experiment that has one factor, the ANOVA test is called a **one-way ANOVA**. If there are two factors, then it is called a **two-way ANOVA**. A one-way ANOVA is a common from of testing using one grouping variable. 
+
+This package has many different ANOVA tests that can be piped into the code:
+
+-   Independent measures ANOVA
+-   Repeated measures ANOVA
+-   Mixed ANOVA
+-   ANCOVA: Analysis of Covariance
 
 ```{r}
+penguins_clean <- penguins %>%
+  drop_na() #for ANOVA testing, it is best to not have any NAs in the data
 
+#one-way ANOVA
+one_way_pens <-penguins_clean %>%
+  anova_test(year ~ bill_length_mm)
+get_anova_table(one_way_pens)
+
+#grouped one-way ANOVA
+group_anova <- penguins_clean %>%
+  group_by(species) %>%
+  anova_test(year ~ bill_length_mm)
+get_anova_table(group_anova)
+
+#two-way ANOVA
+two_way_pens <- penguins_clean %>%
+  anova_test(year ~ bill_length_mm*bill_depth_mm)
+get_anova_table(two_way_pens)
+
+#grouped two-way ANOVA
+group_twopens <- penguins_clean %>%
+  group_by(species) %>%
+  anova_test(year ~ bill_length_mm*bill_depth_mm)
+get_anova_table(group_twopens)
 ```
 
-## ANOVA test plotting
+### ANOVA test plotting
 
 ```{r}
 
