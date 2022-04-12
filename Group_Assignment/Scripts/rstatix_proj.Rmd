@@ -19,6 +19,7 @@ For this project, we are using the PalmerPenguin data set to demonstrate how to 
 
 install.packages("ggpubr")
 install.packages("rstatix")
+
 ## Load libraries
 ```{r}
 library(tidyverse)
@@ -75,7 +76,7 @@ view(outliers2)
 ```
 
 ## Shapiro Test
-Single and multi variable Shapiro-Wilk normality test.
+Single and multi-variable Shapiro-Wilk normality test.
 This test examines if a variable is normally distributed in a population. 
 Null hypothesis means data is evenly distributed.
 p-value less than 0.05 rejects null hypothesis.
@@ -115,12 +116,6 @@ We will be using the two-samples paired t-test from above to plot.
 
 ```{r, bill_t_test, outwidth = "50%", fig.align='center'}
 ## First we need to install load the ggpubr package
-<<<<<<< HEAD
-
-library(ggpubr)
-
-=======
->>>>>>> b7107ac47c8c0f12eeab6ebeedc7c52f50bfb3b7
 ## Next step is to remove any unwanted NAs from data and plot, so we need to have a clean data set
 penguins_clean1 <- penguins %>% 
   drop_na(sex)  ### dropping NAs from the sex column ###
@@ -158,27 +153,21 @@ Effect Sizes:
 - 0.5: moderate effect
 - 0.8: large effect
 ```{r}
-<<<<<<< HEAD
 penguin_clean <- penguins %>% 
   drop_na()
 
-#T-test effect size for one sample
-=======
 #t-test effect size for one sample
->>>>>>> b7107ac47c8c0f12eeab6ebeedc7c52f50bfb3b7
 effect_one <- penguins %>% 
   cohens_d(year ~ 1, mu = 0)
 effect_one
 
-<<<<<<< HEAD
 #T-test effect size for two independent samples
 effect_two <-penguin_clean %>% 
   cohens_d(bill_length_mm ~ sex, var.equal = TRUE) 
-=======
+
 #t-test effect size for two independent samples
 effect_two <-penguins %>% 
   cohens_d(year ~ bill_depth_mm, var.equal = TRUE) 
->>>>>>> b7107ac47c8c0f12eeab6ebeedc7c52f50bfb3b7
 effect_two
 ```
 
