@@ -8,7 +8,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.path = "../Output/")
 ```
 
 # Introduction
@@ -33,6 +33,7 @@ library(ggpubr)
 Summary statistics is gathered to summarize and acquire information from the given data set.
 
 This function allows us to compute summary statistics for either one or more numeric variables.
+
 ```{r}
 #Full summary statistics
 fullsum_penguins <- penguins %>% 
@@ -89,8 +90,8 @@ view(normality)
 
 ```
 
-## T-test
-T-tests are typically used to determine significant differences (p value) between the means of two group.
+## t-test
+t-tests are typically used to determine significant differences (p value) between the means of two group.
 
 The rstatix package offers the t_test() function that can compute one-sample, two-samples, and pairwise t-tests. 
 
@@ -108,11 +109,11 @@ view(t_test2)
 ## How would you compute an unpaired t-test? Discuss with your neighbor
 ```
 
-## T-test plotting
-The p value from t-tests can be used to plot via the function stat_pvalue_manual() with the ggpubr package.
+### t-test plotting
+The p-value from t-tests can be used to plot via the function stat_pvalue_manual() with the ggpubr package.
 We will be using the two-samples paired t-test from above to plot. 
 
-```{r}
+```{r, bill_t_test, outwidth = "50%", fig.align='center'}
 ## First we need to install load the ggpubr package
 ## Next step is to remove any unwanted NAs from data and plot, so we need to have a clean data set
 penguins_clean1 <- penguins %>% 
@@ -151,12 +152,12 @@ Effect Sizes:
 - 0.5: moderate effect
 - 0.8: large effect
 ```{r}
-#T-test effect size for one sample
+#t-test effect size for one sample
 effect_one <- penguins %>% 
   cohens_d(year ~ 1, mu = 0)
 effect_one
 
-#T-test effect size for two independent samples
+#t-test effect size for two independent samples
 effect_two <-penguins %>% 
   cohens_d(year ~ bill_depth_mm, var.equal = TRUE) 
 effect_two
