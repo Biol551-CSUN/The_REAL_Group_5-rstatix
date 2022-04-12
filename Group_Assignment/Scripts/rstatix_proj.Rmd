@@ -25,7 +25,6 @@ library(rstatix)
 library(here)
 library(ggplot2)
 library(palmerpenguins)
-library(vtable)
 ```
 
 ## Summary Statistics
@@ -117,12 +116,12 @@ install.packages("ggpubr")
 library(ggpubr)
 
 ## Next step is to remove any unwanted NAs from data and plot, so we need to have a clean data set
-penguins_clean <- penguins %>% 
+penguins_clean1 <- penguins %>% 
   drop_na(sex)  ### dropping NAs from the sex column ###
-view(penguins_clean)
+view(penguins_clean1)
 
 ## t-test plot with brackets
-ggboxplot(penguins_clean, x = "sex", y = "bill_length_mm", 
+ggboxplot(penguins_clean1, x = "sex", y = "bill_length_mm", 
           color = "sex", palette = "simpsons", 
           facet.by = "year", ylim = c(0,70)) +
   stat_pvalue_manual(t_test2, label = "p", y.position = 65) + 
@@ -132,7 +131,7 @@ ggboxplot(penguins_clean, x = "sex", y = "bill_length_mm",
   ### to remove brackets, use "remove.bracket = TRUE" within the stat_pvalue_manual function
 
 ## t-test plot that shows significance 
-ggboxplot(penguins_clean, x = "sex", y = "bill_length_mm", 
+ggboxplot(penguins_clean1, x = "sex", y = "bill_length_mm", 
           color = "sex", palette = "simpsons", 
           facet.by = "year", ylim = c(0,70)) +
   stat_pvalue_manual(t_test2, label = "p.adj.signif", y.position = 65) +
