@@ -78,6 +78,7 @@ This test examines if a variable is normally distributed in a population.
 Null hypothesis means data is evenly distributed.
 p-value less than 0.05 rejects null hypothesis.
 p-value greater than 0.05 does not reject null hypothesis. 
+
 ```{r}
 #Shapiro test function
 normality <- penguins %>%
@@ -88,15 +89,57 @@ view(normality)
 ```
 
 ## T-test
+T-tests are typically used to determine significant differences (p value) between the means of two group.
+
+The rstatix package offers the t_test() function that can compute one-sample, two-samples, and pairwise t-tests. 
 
 ```{r}
+## one-sample t-test
+t_test1 <- penguins %>% 
+  t_test(bill_length_mm ~ 1, mu = 0)
+view(t_test1)
 
+## two-samples paired t_test
+t_test2 <- penguins %>% 
+  t_test(bill_length_mm ~ sex) 
+view(t_test2)
+
+## How would you compute an unpaired t-test? Discuss with your neighbor
 ```
 
-### T-test plotting
+## T-test plotting
+The p value from t-tests can be used to plot via the function stat_pvalue_manual() with the ggpubr package.
+We will be using the two-samples paired t-test from above to plot. 
 
 ```{r}
+## First we need to install load the ggpubr package
+install.packages("ggpubr")
+library(ggpubr)
 
+## Next step is to remove any unwanted NAs from data and plot, so we need to have a clean data set
+penguins_clean <- penguins %>% 
+  drop_na(sex)  ### dropping NAs from the sex column ###
+view(penguins_clean)
+
+## t-test plot with brackets
+ggboxplot(penguins_clean, x = "sex", y = "bill_length_mm", 
+          color = "sex", palette = "simpsons", 
+          facet.by = "year", ylim = c(0,70)) +
+  stat_pvalue_manual(t_test2, label = "p", y.position = 65) + 
+  labs(title = "Penguin Bill Length T-test", 
+       x = "Sex", y = "Bill Length (mm)", 
+       caption = "Source: Palmerpenguins package")
+  ### to remove brackets, use "remove.bracket = TRUE" within the stat_pvalue_manual function
+
+## t-test plot that shows significance 
+ggboxplot(penguins_clean, x = "sex", y = "bill_length_mm", 
+          color = "sex", palette = "simpsons", 
+          facet.by = "year", ylim = c(0,70)) +
+  stat_pvalue_manual(t_test2, label = "p.adj.signif", y.position = 65) +
+  labs(title = "Penguin Bill Length T-test", 
+       x = "Sex", y = "Bill Length (mm)", 
+       caption = "Source: Palmerpenguins package")
+  ### changes label from "p" to "p.adj.signif" ###
 ```
 
 ### Effect size for t-test
