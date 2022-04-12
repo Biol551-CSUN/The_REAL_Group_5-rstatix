@@ -112,7 +112,7 @@ We will be using the two-samples paired t-test from above to plot.
 
 ```{r}
 ## First we need to install load the ggpubr package
-install.packages("ggpubr")
+
 library(ggpubr)
 
 ## Next step is to remove any unwanted NAs from data and plot, so we need to have a clean data set
@@ -152,14 +152,17 @@ Effect Sizes:
 - 0.5: moderate effect
 - 0.8: large effect
 ```{r}
+penguin_clean <- penguins %>% 
+  drop_na()
+
 #T-test effect size for one sample
 effect_one <- penguins %>% 
   cohens_d(year ~ 1, mu = 0)
 effect_one
 
 #T-test effect size for two independent samples
-effect_two <-penguins %>% 
-  cohens_d(year ~ bill_depth_mm, var.equal = TRUE) 
+effect_two <-penguin_clean %>% 
+  cohens_d(bill_length_mm ~ sex, var.equal = TRUE) 
 effect_two
 ```
 
