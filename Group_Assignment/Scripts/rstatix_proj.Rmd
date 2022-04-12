@@ -25,12 +25,34 @@ library(rstatix)
 library(here)
 library(ggplot2)
 library(palmerpenguins)
+library(vtable)
 ```
 
-## First code function
+## Summary Statistics
+Summary statistics is gathered to summarize and acquire information from the given data set.
 
+This function allows us to compute summary statistics for either one or more numeric variables.
 ```{r}
+#Full summary statistics
+fullsum_penguins <- penguins %>% 
+  get_summary_stats(year)
+fullsum_penguins
 
+#Grouped data summary statistics ; showing only common summary
+groupsum_penguins <- penguins %>% 
+  group_by(bill_length_mm, bill_depth_mm) %>% 
+  get_summary_stats(year, type = "common")
+groupsum_penguins
+
+#Robust summary statistics
+robustsum_penguins <- penguins %>% 
+  get_summary_stats(year, type = "robust")
+robustsum_penguins
+
+#Summary statistics of only the mean and sd
+meansdsum_penguins <- penguins %>% 
+  get_summary_stats(year, type = "mean_sd")
+meansdsum_penguins
 ```
 
 ## Second code function
@@ -56,6 +78,29 @@ library(palmerpenguins)
 ```{r}
 
 ```
+
+### Effect size for t-test
+Cohen's d measure of effect size allows us to compute the effect size for a given t-test.
+
+This is calculated as the difference between mean minus mu divided by the standard deviation.
+
+Effect Sizes:
+
+- 0.2: small effect
+- 0.5: moderate effect
+- 0.8: large effect
+```{r}
+#T-test effect size for one sample
+effect_one <- penguins %>% 
+  cohens_d(year ~ 1, mu = 0)
+effect_one
+
+#T-test effect size for two independent samples
+effect_two <-penguins %>% 
+  cohens_d(year ~ bill_depth_mm, var.equal = TRUE) 
+effect_two
+```
+
 
 ## ANOVA test
 ANOVA testing (Analysis of Variance) is used to compare means between two or more independent groups. 
