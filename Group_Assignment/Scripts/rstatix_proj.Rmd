@@ -17,8 +17,8 @@ rstatix is a r package for basic statistical tests that is pipe-friendly to R an
 
 For this project, we are using the PalmerPenguin data set to demonstrate how to use the package.
 
-install.packages("ggpubr")
-install.packages("rstatix")
+-   install.packages("ggpubr")
+-   install.packages("rstatix")
 
 ## Load libraries
 ```{r}
