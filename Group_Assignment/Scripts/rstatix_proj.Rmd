@@ -164,10 +164,6 @@ effect_one
 #T-test effect size for two independent samples
 effect_two <-penguin_clean %>% 
   cohens_d(bill_length_mm ~ sex, var.equal = TRUE) 
-
-#t-test effect size for two independent samples
-effect_two <-penguins %>% 
-  cohens_d(year ~ bill_depth_mm, var.equal = TRUE) 
 effect_two
 ```
 
