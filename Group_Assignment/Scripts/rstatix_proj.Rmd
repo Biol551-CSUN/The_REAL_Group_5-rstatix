@@ -55,15 +55,35 @@ meansdsum_penguins <- penguins %>%
 meansdsum_penguins
 ```
 
-## Second code function
+## Identify Outliers 
+Allows one to identify data outliers of a single variable at a time
 
 ```{r}
+#Outlier of palmer penguin data for bill length (mm) 
+outliers1 <- penguins %>%
+  group_by(species)%>%
+  identify_outliers(bill_length_mm)
+view(outliers1)
 
+#Outlier of palmer penguin data for bill depth (mm)
+outliers2 <- penguins %>%
+  group_by(species)%>%
+  identify_outliers(bill_depth_mm)
+view(outliers2)
 ```
 
-## Third code function
-
+## Shapiro Test
+Univariate and multivariate Shapiro-Wilk normality test.
+This test examines if a variable is normally distributed in a population. 
+Null hypothesis means data is evenly distributed.
+p-value less than 0.05 rejects null hypothesis.
+p-value greater than 0.05 does not reject null hypothesis. 
 ```{r}
+#Shapiro test function
+normality <- penguins %>%
+  group_by(species) %>%
+  shapiro_test(bill_length_mm, bill_depth_mm, body_mass_g, flipper_length_mm)
+view(normality)
 
 ```
 
