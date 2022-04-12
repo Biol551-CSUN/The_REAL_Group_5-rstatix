@@ -3,4 +3,11 @@
 ### Group 5 members: Sophia Boyd, Brandon Bonilla, Alex Dang, Vivian Vy Le
 ### Created on: 2022-03-29
 
-For our group project, we are using the [rstatix package](https://github.com/kassambara/rstatix). 
+For our group project, we are using the [rstatix package](https://github.com/kassambara/rstatix).
+
+Group contributions:
+
+- Sophia Boyd:
+- Brandon Bonilla:
+- Alex Dang:
+- Vivian Vy Le: ANOVA, ANOVA plotting

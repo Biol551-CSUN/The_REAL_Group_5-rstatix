@@ -1,0 +1,101 @@
+---
+title: "Learning rstatix"
+author: "Sophia Boyd"
+date: "3/29/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load Libraries
+```{r}
+library(rstatix)
+library(ggpubr)
+library(palmerpenguins)
+library(tidyverse)
+```
+## Load Data
+```{r}
+glimpse(penguins)
+view(penguins)
+```
+
+View(penguins)
+
+```{r}
+newpenguins <- penguins %>% 
+  drop_na()
+```
+
+
+# Comparing means
+```{r}
+penguins %>% t_test(bill_length_mm ~ 1, mu = 0) # one-sample t test
+
+penguins %>% t_test(bill_length_mm ~ sex, paired = FALSE) # two-sample t test unpaired
+
+penguins %>% t_test(bill_length_mm ~ sex) # two_sample t test paired
+
+penguins %>% # compare after grouping
+  group_by(species) %>% 
+  t_test(data =., bill_length_mm ~ sex) %>% 
+  adjust_pvalue(method = "bonferroni") %>% 
+  add_significance("p.adj")
+```
+
+# Effect size
+```{r}
+penguins %>% cohens_d(bill_length_mm ~ 1, mu = 0) # one sample t test effect size
+
+penguins %>% cohens_d(bill_length_mm ~ sex, var.equal = TRUE) # two independent samples t-test effect size
+```
+
+# Get_summary_stats()
+```{r}
+penguins %>% 
+  get_summary_stats(bill_length_mm, bill_depth_mm, type = "common") # summary statistics of selected variables
+
+penguins %>% get_summary_stats(type = "common") # summary of whole data frame
+
+penguins %>% 
+  group_by("Gentoo") %>% 
+  get_summary_stats(body_mass_g, type = "mean_sd") # summary of a specific group
+```
+
+# Data manipulation helper functions
+```{r}
+head(penguins) %>% 
+  df_unite(col = "bill_length_mm_bill_depth_mm", bill_length_mm, bill_depth_mm) # unites multiple columns into one
+
+```
+
+# ANOVA Test 
+```{r}
+penguins %>% anova_test(bill_length_mm ~ bill_depth_mm)
+
+penguins %>% anova_test(body_mass_g ~ bill_depth_mm*bill_length_mm)
+
+```
+
+# Identify outliers
+```{r}
+penguins %>% 
+  identify_outliers(body_mass_g)
+
+penguins %>%  # identify outliers by groups
+  group_by(year) %>% 
+  identify_outliers("body_mass_g")
+```
+
+# Comparing variances
+```{r}
+penguins %>% levene_test(bill_length_mm ~ sex) 
+
+penguins %>% 
+  group_by(species) %>% 
+  levene_test(body_mass_g ~ sex)
+```
+
+
