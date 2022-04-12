@@ -73,7 +73,7 @@ view(outliers2)
 ```
 
 ## Shapiro Test
-Univariate and multivariate Shapiro-Wilk normality test.
+Single and multi variable Shapiro-Wilk normality test.
 This test examines if a variable is normally distributed in a population. 
 Null hypothesis means data is evenly distributed.
 p-value less than 0.05 rejects null hypothesis.
