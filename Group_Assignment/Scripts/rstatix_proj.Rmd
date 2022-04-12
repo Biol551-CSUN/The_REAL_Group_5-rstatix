@@ -17,7 +17,8 @@ rstatix is a r package for basic statistical tests that is pipe-friendly to R an
 
 For this project, we are using the PalmerPenguin data set to demonstrate how to use the package.
 
-
+install.packages("ggpubr")
+install.packages("rstatix")
 ## Load libraries
 ```{r}
 library(tidyverse)
@@ -25,6 +26,7 @@ library(rstatix)
 library(here)
 library(ggplot2)
 library(palmerpenguins)
+library(ggpubr)
 ```
 
 ## Summary Statistics
@@ -112,9 +114,6 @@ We will be using the two-samples paired t-test from above to plot.
 
 ```{r}
 ## First we need to install load the ggpubr package
-install.packages("ggpubr")
-library(ggpubr)
-
 ## Next step is to remove any unwanted NAs from data and plot, so we need to have a clean data set
 penguins_clean1 <- penguins %>% 
   drop_na(sex)  ### dropping NAs from the sex column ###
