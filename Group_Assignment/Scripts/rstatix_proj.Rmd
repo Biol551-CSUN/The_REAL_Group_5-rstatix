@@ -1,5 +1,5 @@
 ---
-title: "rstatix_proj"
+title: "rstatix"
 author: "The REAL Group 5"
 date: "4/9/2022"
 output: 
@@ -179,25 +179,43 @@ This package has many different ANOVA tests that can be piped into the code:
 -   Mixed ANOVA
 -   ANCOVA: Analysis of Covariance
 
+The table consists of several different columns:
+
+-   DFn: degrees of freedom in the numerator
+-   DFd: degrees of freedom in the denominator
+-   F: F distribution (F-test)
+-   p: p-value
+-   p< 0.05: astrisks if the p-value is less than 0.05
+-   ges: generalized effect size
+
 ```{r}
+#for ANOVA testing, it is best to not have any NAs in the data
 penguins_clean <- penguins %>%
-  drop_na() #for ANOVA testing, it is best to not have any NAs in the data
+  drop_na() 
 
 #one-way ANOVA
+#variable: bill length
+#can get anova table in the console by using get_anova_table
+#objecting the test helps to open the anova table in a new tab
 one_way_pens <-penguins_clean %>%
   anova_test(year ~ bill_length_mm)
-get_anova_table(one_way_pens)
+get_anova_table(one_way_pens, correction = "none")
+
 
 #grouped one-way ANOVA
+#grouping by species
 group_anova <- penguins_clean %>%
   group_by(species) %>%
   anova_test(year ~ bill_length_mm)
 get_anova_table(group_anova)
 
+
 #two-way ANOVA
+#two variables: bill length and depth
 two_way_pens <- penguins_clean %>%
   anova_test(year ~ bill_length_mm*bill_depth_mm)
-get_anova_table(two_way_pens)
+get_anova_table(two_way_pens, correction = "none")
+
 
 #grouped two-way ANOVA
 group_twopens <- penguins_clean %>%
@@ -208,6 +226,13 @@ get_anova_table(group_twopens)
 
 ### ANOVA test plotting
 
-```{r}
-
+```{r, anova_plot, outwidth = "50%", fig.align='center'}
+ggplot() +
+  geom_boxplot(penguins_clean, mapping = aes(x = year, y = bill_length_mm, fill = island )) +
+  facet_wrap(~species) +
+  labs(title = "Penguin Bill Length Across Species",
+       x = "Year",
+       y = "Bill Length (mm)",
+       fill = "Island",
+       caption = "Source: PalmerPenguins")
 ```

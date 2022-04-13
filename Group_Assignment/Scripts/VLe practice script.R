@@ -4,6 +4,7 @@
 
 #### load library ####
 library(rstatix)
+library(ggpubr)
 library(tidyverse)
 library(ggplot2)
 library(palmerpenguins)
@@ -100,16 +101,27 @@ view(oneanovapens)
 #grouped one-way anova test
 group_anova <- penguins_clean %>%
   group_by(species) %>%
-  anova_test(year ~ flipper_length_mm)
+  anova_test(year ~ flipper_length_mm) %>%
+  adjust_pvalue() %>%
+  add_significance("p.adj")
 view(group_anova)
 
+#anova_sex <- penguins_clean %>% anova_test(sex ~ flipper_length_mm)
+#cant use anova with sex
 
 
 ## plotting
-penguins_clean %>%
-  ggplot() +
-  geom_boxplot(aes(x = year, y = bill_length_mm, fill = island)) +
-  facet_wrap(~species)
+
+plot <- ggplot() +
+  geom_boxplot(penguins_clean, mapping = aes(x = year, y = flipper_length_mm, fill = island )) +
+  facet_wrap(~species) +
+  labs(title = "Penguin Flipper Length Across Species",
+       x = "Year",
+       y = "Flipper Length (mm)",
+       fill = "Island",
+       caption = "Source: PalmerPenguins")
+
+
 
 ## functions for the group project that worked
 #get_summary_stats
