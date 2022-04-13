@@ -114,7 +114,7 @@ view(t_test2)
 The p-value from t-tests can be used to plot via the function stat_pvalue_manual() with the ggpubr package.
 We will be using the two-samples paired t-test from above to plot. 
 
-```{r, bill_t_test, outwidth = "50%", fig.align='center'}
+```{r, bill_t_test1, outwidth = "50%", fig.align='center'}
 ## First we need to install load the ggpubr package
 ## Next step is to remove any unwanted NAs from data and plot, so we need to have a clean data set
 penguins_clean1 <- penguins %>% 
@@ -130,7 +130,9 @@ ggboxplot(penguins_clean1, x = "sex", y = "bill_length_mm",
        x = "Sex", y = "Bill Length (mm)", 
        caption = "Source: Palmerpenguins package")
   ### to remove brackets, use "remove.bracket = TRUE" within the stat_pvalue_manual function
+```
 
+```{r, bill_t_test2, outwidth = "50%", fig.align='center'}
 ## t-test plot that shows significance 
 ggboxplot(penguins_clean1, x = "sex", y = "bill_length_mm", 
           color = "sex", palette = "simpsons", 
