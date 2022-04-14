@@ -245,21 +245,6 @@ group_twopens <- penguins_clean %>%
 get_anova_table(group_twopens)
 ```
 
-<<<<<<< HEAD
-### ANOVA test plotting
-
-```{r, anova_plot, outwidth = "50%", fig.align='center'}
-ggplot() +
-  geom_boxplot(penguins_clean, mapping = aes(x = year, y = bill_length_mm, fill = island )) +
-  facet_wrap(~species) +
-  labs(title = "Penguin Bill Length Across Species",
-       x = "Year",
-       y = "Bill Length (mm)",
-       fill = "Island",
-       caption = "Source: PalmerPenguins") 
-```
-
-=======
 ## Correlation Test
 
 Correlation tests can be used to compare the association between two or more variables.
@@ -302,5 +287,4 @@ cormatpens <- data %>%
   cor_plot()
 view(cormatpens)
 ```
->>>>>>> 652864c599d6a97a7a3d444c0aff540e4d1477d1
 
