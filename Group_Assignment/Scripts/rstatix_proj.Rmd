@@ -75,13 +75,13 @@ Allows one to identify data outliers of a single variable at a time
 outliers1 <- penguins %>%
   group_by(species)%>%
   identify_outliers(bill_length_mm)
-view(outliers1)
+outliers1
 
 #Outlier of palmer penguin data for bill depth (mm)
 outliers2 <- penguins %>%
   group_by(species)%>%
   identify_outliers(bill_depth_mm)
-view(outliers2)
+outliers2
 ```
 
 ## Shapiro Test
@@ -96,7 +96,7 @@ p-value greater than 0.05 does not reject null hypothesis.
 normality <- penguins %>%
   group_by(species) %>%
   shapiro_test(bill_length_mm, bill_depth_mm, body_mass_g, flipper_length_mm)
-view(normality)
+normality
 
 ```
 
@@ -109,12 +109,12 @@ The rstatix package offers the t_test() function that can compute one-sample, tw
 ## one-sample t-test
 t_test1 <- penguins %>% 
   t_test(bill_length_mm ~ 1, mu = 0)
-view(t_test1)
+t_test1
 
 ## two-samples paired t_test
 t_test2 <- penguins %>% 
   t_test(bill_length_mm ~ sex) 
-view(t_test2)
+t_test2
 
 ## How would you compute an unpaired t-test? Discuss with your neighbor
 ```
