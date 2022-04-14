@@ -27,6 +27,6 @@ For our group project, we are using the [rstatix package](https://github.com/kas
 - **t_test():** Used to determine significant differences (p value) between the means of two group.
 - **cohens_d():** Compute the effect size for a given t-test.
 - **anova_test():** Used to compare means between two or more independent groups.
-- 
+- **cor_test():** Correlation test between two or more variables
 
 **Further information:**
