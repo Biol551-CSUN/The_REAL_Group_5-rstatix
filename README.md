@@ -2,7 +2,7 @@
 
 ## BIOL 551 Computer Modeling Group Project
 
-### Group 5 members: Sophia Boyd, Brandon Bonilla, Alex Dang, Vivian Vy Le
+### Group 5 members: Brandon Bonilla, Sophia Boyd, Alex Dang, Vivian Vy Le
 
 ### Created on: 2022-03-29
 
