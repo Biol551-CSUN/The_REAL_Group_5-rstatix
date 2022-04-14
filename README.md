@@ -13,7 +13,7 @@ For our group project, we are using the [rstatix package](https://github.com/kas
 - **Vivian Vy Le:** ANOVA Test
 
 **Introduction to rstatix:**
-Rstatix, in association with 'tidyverse', provides a simple and pipe-friendly foundation for anyone looking to perform statistical tests in R. The package allows user to compute a variety of effect size metrics for plots in functions such as, ANOVA and t-test. Users are also able to conduct comparisons between single or multiple variables simutaneously in identifing outliers, analyzing normality, and assessing variance. In addition to rstatix, 'ggpubr' was also used for t-test plotting. Ultimately, the package provides convienence and organization to users interested in using R for statistical data analysis.     
+- Rstatix, in association with 'tidyverse', provides a simple and pipe-friendly foundation for anyone looking to perform statistical tests in R. The package allows user to compute a variety of effect size metrics for plots in functions such as, ANOVA and t-test. Users are also able to conduct comparisons between single or multiple variables simutaneously in identifing outliers, analyzing normality, and assessing variance. In addition to rstatix, 'ggpubr' was also used for t-test plotting. Ultimately, the package provides convienence and organization to users interested in using R for statistical data analysis.     
 
 **Group Subfolder Components:** 
 - [Data:] Palmerpenguin dataset used
