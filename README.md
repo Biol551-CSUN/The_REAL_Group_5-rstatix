@@ -7,7 +7,7 @@ For our group project, we are using the [rstatix package](https://github.com/kas
 
 Group contributions:
 
-- Sophia Boyd:
 - Brandon Bonilla:
+- Sophia Boyd: Summary Statistics & T-test Effect Size
 - Alex Dang:
 - Vivian Vy Le: ANOVA, ANOVA plotting
