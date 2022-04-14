@@ -7,7 +7,7 @@ For our group project, we are using the [rstatix package](https://github.com/kas
 
 **Group Contributions:**
 
-- **Brandon Bonilla:** Identify Outliers & Shapiro Test
+- **Brandon Bonilla:** Identify Outliers, Shapiro Test & README
 - **Sophia Boyd:** Summary Statistics & T-test Effect Size
 - **Alex Dang:** T-test & T-test Plotting 
 - **Vivian Vy Le:** ANOVA Test & Correlation Test
