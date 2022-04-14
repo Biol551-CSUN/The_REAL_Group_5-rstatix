@@ -176,7 +176,7 @@ penguin_clean <- penguins %>%
 
 #t-test effect size for one sample
 effect_one <- penguins %>% 
-  cohens_d(bill_length_mm ~ 1, mu = 0)
+  cohens_d(body_mass_g ~ 1, mu = 3775)
 effect_one
 
 #T-test effect size for two independent samples
