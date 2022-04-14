@@ -35,6 +35,15 @@ Summary statistics is gathered to summarize and acquire information from the giv
 
 This function allows us to compute summary statistics for either one or more numeric variables.
 
+Columns:
+
+- n = # of individuals
+- min = minimum, max = maximum, medium = medium
+- mean = mean
+- q1, q3 = 1st & 3rd quartile
+- sd = standard deviation of the mean
+- se = standard error of the mean
+
 ```{r}
 #Full summary statistics
 fullsum_penguins <- penguins %>% 
@@ -51,7 +60,6 @@ groupsum_penguins
 robustsum_penguins <- penguins %>% 
   get_summary_stats(year, type = "robust")
 robustsum_penguins
-
 #Summary statistics of only the mean and sd
 meansdsum_penguins <- penguins %>% 
   get_summary_stats(year, type = "mean_sd")
@@ -154,13 +162,20 @@ Effect Sizes:
 - 0.2: small effect
 - 0.5: moderate effect
 - 0.8: large effect
+
+Cohen's d Formula
+
+d = (m - μ) / s 
+
+d = (mA−mB) / SDpooled
+
 ```{r}
 penguin_clean <- penguins %>% 
   drop_na()
 
 #t-test effect size for one sample
 effect_one <- penguins %>% 
-  cohens_d(year ~ 1, mu = 0)
+  cohens_d(bill_length_mm ~ 1, mu = 0)
 effect_one
 
 #T-test effect size for two independent samples
@@ -236,5 +251,7 @@ ggplot() +
        x = "Year",
        y = "Bill Length (mm)",
        fill = "Island",
-       caption = "Source: PalmerPenguins")
+       caption = "Source: PalmerPenguins") 
 ```
+
+
