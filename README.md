@@ -17,7 +17,7 @@ For our group project, we are using the [rstatix package](https://github.com/kas
 
 **Group Subfolder Components:** 
 - [Data:] Palmerpenguin dataset used
-- [Output:] T-test plot images
+- [Output:](https://github.com/Biol551-CSUN/The_REAL_Group_5-rstatix/tree/main/Group_Assignment/Output) T-test plot images
 - [Scripts:] RMarkdown and HTML scripts used  
 
 **Functions Reviewed:**
