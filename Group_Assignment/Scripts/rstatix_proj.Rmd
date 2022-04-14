@@ -190,6 +190,8 @@ The table consists of several different columns:
 -   p< 0.05: astrisks if the p-value is less than 0.05
 -   ges: generalized effect size
 
+On top of the different ANOVA tests, there are other post-hoc tests included in the package that can be a better fit for different types of data.
+
 ```{r}
 #for ANOVA testing, it is best to not have any NAs in the data
 penguins_clean <- penguins %>%
@@ -202,6 +204,8 @@ penguins_clean <- penguins %>%
 one_way_pens <-penguins_clean %>%
   anova_test(year ~ bill_length_mm)
 get_anova_table(one_way_pens, correction = "none")
+
+#correction is used only in repeated measures and it refers to the degrees of freedom reported for the within-subject factors
 
 
 #grouped one-way ANOVA
@@ -232,11 +236,11 @@ Correlation tests can be used to compare the association between two or more var
 
 There are different methods that can be used to compare associations:
 
--   Peason's correlation: a linear description between the variables (parametric)
+-   Pearson's correlation: a linear relationship/correlation between the variables (parametric)
 -   Kendall tau: measures the correlation between variables when ranked (non-parametric)
 -   Spearmann rho: measures the correlation between variables when ranked (non-parametric)
 
-Values range between -1 and 1. Negative values (-1 to 0) mean that there is a negative association between the variables. Positive values (0 to 1) mean that there is positive association between the variables. 
+Values range between -1 and 1. Negative values (-1 to 0) mean that there is a negative association between the variables. Positive values (0 to 1) mean that there is positive association between the variables. 0 means there is no association between the variables.
 
 ```{r}
 #again using a dataset where we dropped the NAs -> penguins_clean
@@ -262,6 +266,7 @@ view(data)
 cordata <- data %>% cor_test(body_mass_g, method = "pearson")
 cordata
 
+#creating a correlation matrix
 cormatpens <- data %>% 
   cor_mat(body_mass_g, method = "pearson") %>%
   cor_plot()
