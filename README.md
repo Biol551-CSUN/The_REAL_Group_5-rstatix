@@ -18,7 +18,7 @@ For our group project, we are using the [rstatix package](https://github.com/kas
 **Group Subfolder Components:** 
 - [Data:] Palmerpenguin dataset used
 - [Output:](https://github.com/Biol551-CSUN/The_REAL_Group_5-rstatix/tree/main/Group_Assignment/Output) T-test plot images
-- [Scripts:] RMarkdown and HTML scripts used  
+- [Scripts:](https://github.com/Biol551-CSUN/The_REAL_Group_5-rstatix/tree/main/Group_Assignment/Scripts) RMarkdown and HTML scripts used  
 
 **Functions Reviewed:**
 - **get_summary_stats():** Summary statistics is gathered to summarize and acquire information from the given data set.
