@@ -5,6 +5,7 @@ date: "4/9/2022"
 output: 
   html_document:
     toc: TRUE
+    theme: lumen
 ---
 
 ```{r setup, include=FALSE}
