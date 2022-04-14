@@ -226,15 +226,45 @@ group_twopens <- penguins_clean %>%
 get_anova_table(group_twopens)
 ```
 
-### ANOVA test plotting
+## Correlation Test
 
-```{r, anova_plot, outwidth = "50%", fig.align='center'}
-ggplot() +
-  geom_boxplot(penguins_clean, mapping = aes(x = year, y = bill_length_mm, fill = island )) +
-  facet_wrap(~species) +
-  labs(title = "Penguin Bill Length Across Species",
-       x = "Year",
-       y = "Bill Length (mm)",
-       fill = "Island",
-       caption = "Source: PalmerPenguins")
+Correlation tests can be used to compare the association between two or more variables.
+
+There are different methods that can be used to compare associations:
+
+-   Peason's correlation: a linear description between the variables (parametric)
+-   Kendall tau: measures the correlation between variables when ranked (non-parametric)
+-   Spearmann rho: measures the correlation between variables when ranked (non-parametric)
+
+Values range between -1 and 1. Negative values (-1 to 0) mean that there is a negative association between the variables. Positive values (0 to 1) mean that there is positive association between the variables. 
+
+```{r}
+#again using a dataset where we dropped the NAs -> penguins_clean
+
+corpens <-penguins_clean %>%
+  cor_test(bill_length_mm, method = "pearson")
+view(corpens)
+
+#can group by species
+corgroup <- penguins_clean %>%
+  group_by(species) %>%
+  cor_test(bill_length_mm, bill_depth_mm, method = "pearson")
+view(corgroup)
+
 ```
+
+### Correlation matrix
+```{r, pens_cor_mat, outwidth = "50%", fig.align='center'}
+data <- penguins_clean %>%
+  select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g)
+view(data)
+
+cordata <- data %>% cor_test(body_mass_g, method = "pearson")
+cordata
+
+cormatpens <- data %>% 
+  cor_mat(body_mass_g, method = "pearson") %>%
+  cor_plot()
+view(cormatpens)
+```
+
