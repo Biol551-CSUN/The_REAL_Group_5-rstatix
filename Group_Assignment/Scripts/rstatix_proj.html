@@ -727,6 +727,7 @@ corgroup &lt;- penguins_clean %&gt;%
 view(corgroup)</code></pre>
 <div id="correlation-matrix" class="section level3">
 <h3>Correlation matrix</h3>
+<p>We can also create a correlation matrix with the package!</p>
 <pre class="r"><code>data &lt;- penguins_clean %&gt;%
   select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g)
 view(data)

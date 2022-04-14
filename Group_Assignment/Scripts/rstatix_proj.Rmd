@@ -274,6 +274,8 @@ view(corgroup)
 ```
 
 ### Correlation matrix
+We can also create a correlation matrix with the package!
+
 ```{r, pens_cor_mat, outwidth = "50%", fig.align='center'}
 data <- penguins_clean %>%
   select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g)
